@@ -3,7 +3,9 @@ package com.library.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -18,9 +20,10 @@ public class BookTypeModel extends BaseModel {
 
 	@Size(max = 40)
 	private String typeName;
-
-	@OneToMany
-	private List<BookModel> bookList = new ArrayList<BookModel>();
+	
+	@OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, mappedBy = "bookTypeModel")
+	List<BookModel> books = new ArrayList<BookModel>();
 
 	public String getTypeName() {
 		return typeName;
@@ -30,12 +33,12 @@ public class BookTypeModel extends BaseModel {
 		this.typeName = typeName;
 	}
 
-	public List<BookModel> getBookList() {
-		return bookList;
+	public List<BookModel> getBooks() {
+		return books;
 	}
 
-	public void setBookList(List<BookModel> bookList) {
-		this.bookList = bookList;
+	public void setBooks(List<BookModel> books) {
+		this.books = books;
 	}
 
 }

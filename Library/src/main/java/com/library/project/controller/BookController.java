@@ -34,11 +34,12 @@ public class BookController {
              produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
 	public BookModel addBook(@Valid @RequestBody BookModel book) {
 		BookModel bookModel = new BookModel();
+		bookModel.setCreatedDate(DateUtil.now());
+		bookModel.setLastModifiedDate(DateUtil.now());
 		bookModel.setBookName(book.getBookName());
 		bookModel.setAuthorName(book.getAuthorName());
 		bookModel.setAuthorSurname(book.getAuthorSurname());
-		bookModel.setCreatedDate(DateUtil.now());
-		bookModel.setLastModifiedDate(DateUtil.now());
+		bookModel.setBookTypeModel(book.getBookTypeModel());
 		bookRepository.save(bookModel);
 		return book;
 	}

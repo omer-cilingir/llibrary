@@ -1,6 +1,9 @@
 package com.library.project.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -20,6 +23,10 @@ public class BookModel extends BaseModel {
 
 	@Size(max = 50)
 	private String authorSurname;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "book_type_model_id", nullable = false)
+	private BookTypeModel bookTypeModel;
 
 	public String getBookName() {
 		return bookName;
@@ -43,6 +50,14 @@ public class BookModel extends BaseModel {
 
 	public void setAuthorSurname(String authorSurname) {
 		this.authorSurname = authorSurname;
+	}
+
+	public BookTypeModel getBookTypeModel() {
+		return bookTypeModel;
+	}
+
+	public void setBookTypeModel(BookTypeModel bookTypeModel) {
+		this.bookTypeModel = bookTypeModel;
 	}
 
 }
