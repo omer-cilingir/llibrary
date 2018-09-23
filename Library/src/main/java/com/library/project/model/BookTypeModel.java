@@ -22,7 +22,7 @@ public class BookTypeModel extends BaseModel {
 	private String typeName;
 	
 	@OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, mappedBy = "bookTypeModel")
+            fetch = FetchType.EAGER, mappedBy = "bookTypeModel")
 	List<BookModel> books = new ArrayList<BookModel>();
 
 	public String getTypeName() {
