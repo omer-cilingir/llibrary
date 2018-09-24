@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,14 @@ public class BookTypeController {
 	}
 	
 	@GetMapping(path = "/all")
-	public List<BookTypeModel> getBookListByType(){
+	public List<BookTypeModel> getBookList(){
 		List<BookTypeModel> bookTypeModelList = bookTypeRepository.findAll();
 		return bookTypeModelList;
+	}
+	
+	@GetMapping(path = "/{type}")
+	public List<BookTypeModel> getBookListByType(@PathVariable String type){
+		List<BookTypeModel> bookTypeListByType = bookTypeRepository.findByTypeName(type);
+		return bookTypeListByType;
 	}
 }

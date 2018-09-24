@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.library.project.model.base.BaseModel;
 
 @Entity
@@ -54,6 +55,7 @@ public class BookModel extends BaseModel {
 	}
 
 	@JsonIgnore
+	@JsonProperty
 	public BookTypeModel getBookTypeModel() {
 		return bookTypeModel;
 	}
