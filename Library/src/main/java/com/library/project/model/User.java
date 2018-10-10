@@ -35,7 +35,7 @@ public class User extends BaseModel {
 
 	@Size(min = 1, max = 60)
 	private String password;
-
+	
 	public String getUsername() {
 		return username;
 	}
